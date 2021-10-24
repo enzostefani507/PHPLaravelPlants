@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Plantas;
 use Illuminate\Support\Facades\Auth;
-class AuthController extends Controller
+class UserController extends Controller
 {
     public function register(Request $request)
     {
@@ -105,5 +105,11 @@ class AuthController extends Controller
                 return response()->isNotModified();
             }
         }
+    }
+
+    public function verPlantas(Request $request)
+    {
+        $plantas = $request->user()->plantas;
+        return response()->json($plantas);
     }
 }

@@ -13,13 +13,12 @@ class CreatePlantaUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('planta_user', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('planta_id');
+        Schema::create('plantas_user', function (Blueprint $table) {
+            $table->unsignedBigInteger('plantas_id');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('planta_id')->references('id')->on('plantas')->onDelete('cascade');
+            $table->foreign('plantas_id')->references('id')->on('plantas')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->timestamps();
+            $table->primary(['plantas_id','user_id']);
         });
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Plantas;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PlantasController extends Controller
@@ -105,4 +106,13 @@ class PlantasController extends Controller
             $comentarios
         );
     }
+
+    public function addUsuario(Request $request)
+    {
+        $user = $request->user();
+        $planta = Plantas::findOrFail($request->input('planta_id'));
+        $user->plantas()->attach($planta);
+        return response()->json($user);
+    }
+
 }
